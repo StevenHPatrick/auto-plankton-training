@@ -304,8 +304,6 @@ if (not os.path.exists('{}.pth'.format(args.name)) or remake_model):
 else:
     print("Previous model found, loading {}".format(args.name))
     model = models.resnet18( weights=args.name)
-    #Modify the last layer of the model
-    model.fc = torch.nn.Linear(model.fc.in_features, num_classes)
     model.load_state_dict(torch.load('{}.pth'.format(args.name)))
     print("Loading the model with the weights of: ", args.name)
 
@@ -334,9 +332,6 @@ if args.train:
     #Freeze all the pre-trained layers
     for param in model.parameters():
         param.requires_grad = False
-
-    #Modify the last layer of the model
-    model.fc = torch.nn.Linear(model.fc.in_features, num_classes)
 
     #Load the dataset
     dataset = ImageFolder(root = 'Training_Data', transform=transform)
