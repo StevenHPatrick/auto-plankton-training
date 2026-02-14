@@ -218,8 +218,8 @@ def train(model, train_loader, val_loader, train_dataset, val_dataset, criterion
     Returns:
         torch.nn.Module: The trained model, potentially with early stopping applied.
     """
-    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-    model.to(device)
+    #device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+    #model.to(device)
 
     # Create early stopping object to monitor validation loss
     early_stopping = EarlyStopping(patience=patience, verbose=True, delta=min_delta)
